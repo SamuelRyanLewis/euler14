@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 /**
  * Project Euler Problem 14
@@ -44,7 +45,9 @@ long sequenceLength(long number) {
  *
  */
 int main(void) {
-	//printf("113383 is %ld long\n", sequenceLength(113383));
+	clock_t t;
+	t = clock();	
+
 	struct collatzData collatz;
 	collatz.number = 1; //initialize starting at 1
 	collatz.length = 1;
@@ -60,7 +63,11 @@ int main(void) {
 			collatz.length = currLength;
 		}
 	}
+	t = clock() - t;
+	double timeTaken = ((double)t)/CLOCKS_PER_SEC;
 	printf("Starting Number: %d\n", collatz.number);
 	printf("Sequence Length: %d\n", collatz.length);
+	printf("Time taken: %f seconds\n", timeTaken);
+
 }
 
